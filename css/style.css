@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+.topo{
+    height: 100px;
+    background-color: black;
+}
+.topoint{
+    width: 600px;
+    line-height: 100px;
+    color: #CCC;
+    margin: auto;
+    font-size: 30px;
+}
+.menu{
+    height: 40px;
+    background-color: blueviolet;
+}
+.menuint{
+    height: 40px;
+    width: 800px;
+    text-align: center;
+    margin: auto;
+}
+.menuint li{
+    color: #CCC;
+    text-decoration: none;
+    list-style: none;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 20px;
+}
+.conteudo{
+    min-height: 600px;
+    background-color: darkgoldenrod;
+}
+.conteudoint{
+    width: 1040px;
+    min-height: 600px;
+    background-color: blanchedalmond;
+    margin: auto;
+}
