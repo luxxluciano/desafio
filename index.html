@@ -1,39 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Desafio API Marvel</title>
+<style>
+    img{
+        width: 300px;
+        border-bottom-style: solid;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
 
-    
-    <title>desafio_LucianoFagundes</title>
+    .personagem{
+        width: 300px;
+        margin: 20px;
+        border-style: solid;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .stories{
+        width: 150px;
+        margin: 20px;
+        border-style: solid;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+</style>
+
 </head>
 <body>
-    <div class="topo">
-        <div class="topoint">
-            Desafio Luciano Fagundes
-        </div>
+    <div id='heroi1'
+    style="
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+    "
+    >
+    <div id='heroi2'
+    style="
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+    "
+    >
+    <div id='heroi3'
+    style="
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+    "
+    >
 
     </div>
-    <div class="menu">
-        <div class="menuint">
-            <a href="https://www.marvel.com/characters/star-lord-peter-quill/on-screen/profile" target="heroi"><li>Heroi #1</li></a>
-            <a href="https://www.marvel.com/characters/groot/on-screen/profile" target="heroi"><li>Heroi #2</li></a>
-            <a href="https://www.marvel.com/characters/gamora/on-screen/profile" target="heroi"><li>Heroi #3</li></a>
-        </div>
-    </div>
-    <div class="conteudo" id="conteudo">
-        <div class="conteudoint" id="conteudoint">
-            <iframe src="https://www.marvel.com/characters/star-lord-peter-quill/on-screen/profile" frameborder="0"
-             width="1040px" height="600px" name="heroi"></iframe>
-        </div>
-    </div>
-    <div class="footer">
-        <div class="footerint">
-            Desenvolvido por Luciano Martins Fagundes. 2019-2019.
-        </div>
-    </div>
-
 </body>
+<script>
+
+const timeStamp = '1579638130';
+const apiKey = '5f24455ff865b89d92fd02a44e462c5b';
+const md5 = '0295e82efb1432480a090934cfc03739';
+const spiderMan = '1009610'
+const gamora = '1010763'
+const groot = '1010743'
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${spiderMan}?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+    const divHero = document.querySelector('#heroi1');
+
+    jsonParsed.data.results.forEach(element => {
+        const srcImage = element.thumbnail.path + '.' + element.thumbnail.extension;
+        const nameHero = element.name;
+
+        createDivHero(srcImage, nameHero, divHero);
+    })
+
+   console.log(jsonParsed);
+})
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${spiderMan}/stories?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+    const divHero = document.querySelector('#heroi1');
+
+    jsonParsed.data.results.forEach(element => {
+        const storiesList = element.title;
+
+        createDivHero2(storiesList, divHero);
+    })
+
+   console.log(jsonParsed);
+})
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${gamora}?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+
+    const divHero = document.querySelector('#heroi2');
+
+jsonParsed.data.results.forEach(element => {
+    const srcImage = element.thumbnail.path + '.' + element.thumbnail.extension;
+    const nameHero = element.name;
+
+    createDivHero(srcImage, nameHero, divHero);
+})
+
+   console.log(jsonParsed);
+})
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${gamora}/stories?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+    const divHero = document.querySelector('#heroi2');
+
+    jsonParsed.data.results.forEach(element => {
+        const storiesList = element.title;
+
+        createDivHero2(storiesList, divHero);
+    })
+
+   console.log(jsonParsed);
+})
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${groot}?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+
+    const divHero = document.querySelector('#heroi3');
+
+jsonParsed.data.results.forEach(element => {
+    const srcImage = element.thumbnail.path + '.' + element.thumbnail.extension;
+    const nameHero = element.name;
+
+    createDivHero(srcImage, nameHero, divHero);
+})
+
+   console.log(jsonParsed);
+})
+
+fetch(`https://gateway.marvel.com:443/v1/public/characters/${groot}/stories?ts=${timeStamp}&apikey=${apiKey}&hash=${md5}&limit=5`
+).then((response) => {
+  return response.json();
+}).then((jsonParsed) => {
+    const divHero = document.querySelector('#heroi3');
+
+    jsonParsed.data.results.forEach(element => {
+        const storiesList = element.title;
+
+        createDivHero2(storiesList, divHero);
+    })
+
+   console.log(jsonParsed);
+})
+
+
+function createDivHero(srcImage, nameHero, divToAppend) {
+    const divPai = document.createElement('div')
+    const divFilho = document.createElement('div')
+    const textName = document.createElement('text')
+    const img = document.createElement('img')
+
+    textName.textContent = nameHero
+    img.src = srcImage
+
+    divFilho.appendChild(img)
+    divFilho.appendChild(textName)
+    divPai.appendChild(divFilho)
+    divToAppend.appendChild(divPai)
+
+    divPai.classList.add("personagem");
+}
+
+function createDivHero2(storiesList, divToAppend) {
+    const divPai = document.createElement('div')
+    const divFilho = document.createElement('div')
+    const stories = document.createElement('text')
+
+    stories.textContent = storiesList
+
+    divFilho.appendChild(stories)
+    divPai.appendChild(divFilho)
+    divToAppend.appendChild(divPai)
+
+    divPai.classList.add("stories");
+}
+
+
+</script>
 </html>
